@@ -1,0 +1,12 @@
+@if (wishes.length === 0) {
+<div>There are no wishes to display</div>
+
+} @else {
+<ul class="wish-list">
+    @for (wish of wishes; track wish;) {
+        <wish-list-item [wishText]="wish.wishText" [(fullfilled)]="wish.isComplete"></wish-list-item>
+    }
+
+</ul>
+
+}
