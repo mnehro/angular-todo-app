@@ -4,7 +4,7 @@
 } @else {
 <ul class="wish-list">
     @for (wish of wishes; track wish;) {
-        <wish-list-item [wishText]="wish.wishText" [(fullfilled)]="wish.isComplete"></wish-list-item>
+        <wish-list-item [wish]="wish"></wish-list-item>
     }
 
 </ul>

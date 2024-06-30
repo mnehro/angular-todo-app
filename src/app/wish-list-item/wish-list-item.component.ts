@@ -1,20 +1,26 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { NgClass } from '@angular/common';
+import events from '../../shared/services/EventService';
 import { WishItem } from '../../shared/models/wishItem';
-
 @Component({
   selector: 'wish-list-item',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './wish-list-item.component.html',
   styleUrl: './wish-list-item.component.css'
 })
 export class WishListItemComponent {
-  @Input() wishText!: string;
-  @Input() fullfilled!: boolean;
-  @Output() fullfilledChange = new EventEmitter<boolean>();
+  @Input() wish!: WishItem;
 
   toggleFullfilled(): void {
-    this.fullfilled = !this.fullfilled;
-    this.fullfilledChange.emit(this.fullfilled);
+    this.wish.isComplete = !this.wish.isComplete;
+  }
+  get cssProperties(): object {
+    return {
+      'strikeout text-muted': this.wish.isComplete
+    };
+  }
+  removeWish(): void {
+    events.emit('removeWish', this.wish);
   }
 }
