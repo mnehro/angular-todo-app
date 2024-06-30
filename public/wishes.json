@@ -1,0 +1,14 @@
+[
+    {
+        "wishText": "To learn angular",
+        "isComplete": false
+    },
+    {
+        "wishText": "Get coffe",
+        "isComplete": true
+    },
+    {
+        "wishText": "Find grass that cut itself",
+        "isComplete": false
+    }
+]
