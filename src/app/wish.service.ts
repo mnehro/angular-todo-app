@@ -18,9 +18,9 @@ export class WishService {
     };
   }
 
-  getWishes() {
+  getWishes() : Observable<HttpEvent<WishItem[]>> {
     let options = this.getStandardOptions();
-    return this.http.get('wishes.json', options);
+    return this.http.get<WishItem[]>('wishes.json', options);
   }
 
   private addWish(wish : WishItem) {
