@@ -7,7 +7,6 @@ import { WishFilterComponent } from './wish-filter/wish-filter.component';
 import { EventService } from '../shared/services/EventService';
 import { WishService } from './wish.service';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -24,10 +23,18 @@ export class AppComponent implements OnInit {
       this.items.splice(index, 1);
     });
   }
+
   ngOnInit(): void {
     this.wishService.getWishes().subscribe((data : any) => {
       this.items = data;
-    })
+    },
+    (error: any) => {
+      console.error(error);
+      
+      alert(error.message);
+    }
+  
+  )
     this.filter = (item: WishItem) => item;
   }
 
