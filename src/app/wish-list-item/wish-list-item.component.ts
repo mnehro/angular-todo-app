@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgClass } from '@angular/common';
-import events from '../../shared/services/EventService';
+import { EventService } from '../../shared/services/EventService';
 import { WishItem } from '../../shared/models/wishItem';
 @Component({
   selector: 'wish-list-item',
@@ -11,6 +11,9 @@ import { WishItem } from '../../shared/models/wishItem';
 })
 export class WishListItemComponent {
   @Input() wish!: WishItem;
+  constructor(private events: EventService) {
+
+  }
 
   toggleFullfilled(): void {
     this.wish.isComplete = !this.wish.isComplete;
@@ -21,6 +24,6 @@ export class WishListItemComponent {
     };
   }
   removeWish(): void {
-    events.emit('removeWish', this.wish);
+    this.events.emit('removeWish', this.wish);
   }
 }
